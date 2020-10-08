@@ -1,5 +1,4 @@
 import photos from "./data/gallary-items.js";
-console.log(photos);
 
 const galleryList = document.querySelector("ul.gallery");
 const lightbox = document.querySelector(".lightbox");
@@ -27,4 +26,13 @@ const createLink = (el, parent) => {
   createImage(el, link);
 
   parent.appendChild(link);
+};
+
+const createItem = (el) => {
+  const li = document.createElement("li");
+  li.classList.add("gallary__item");
+
+  createLink(el, li);
+
+  return li;
 };
