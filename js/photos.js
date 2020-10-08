@@ -54,3 +54,9 @@ function onClickHandler(el) {
     lightbox.querySelector(".lightbox__image").alt = el.target.alt;
   }
 }
+
+function onCloseHandler(el) {
+  if (el.target.nodeName === "BUTTON") {
+    lightbox.classList.remove("is-open");
+  }
+}
