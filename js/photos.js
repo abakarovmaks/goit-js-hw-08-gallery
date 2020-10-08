@@ -36,3 +36,9 @@ const createItem = (el) => {
 
   return li;
 };
+
+const listItems = (arr) => {
+  const items = arr.map((el) => createItem(el));
+
+  galleryList.append(...items);
+};
