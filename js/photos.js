@@ -42,3 +42,15 @@ const listItems = (arr) => {
 
   galleryList.append(...items);
 };
+
+listItems(photos);
+
+function onClickHandler(el) {
+  el.preventDefault();
+
+  if (el.target.nodeName === "IMG") {
+    lightbox.classList.add("is-open");
+    lightbox.querySelector(".lightbox__image").src = el.target.src;
+    lightbox.querySelector(".lightbox__image").alt = el.target.alt;
+  }
+}
