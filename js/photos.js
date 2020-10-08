@@ -16,3 +16,15 @@ const createImage = (el, parent) => {
 
   parent.appendChild(img);
 };
+
+const createLink = (el, parent) => {
+  const { original } = el;
+  const link = document.createElement("a");
+
+  link.classList.add("gallary__link");
+  link.href = original;
+
+  createImage(el, link);
+
+  parent.appendChild(link);
+};
