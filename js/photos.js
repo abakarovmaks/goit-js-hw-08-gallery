@@ -60,3 +60,6 @@ function onCloseHandler(el) {
     lightbox.classList.remove("is-open");
   }
 }
+
+galleryList.addEventListener("click", onClickHandler);
+btn.addEventListener("click", onCloseHandler);
