@@ -4,6 +4,10 @@ const galleryList = document.querySelector("ul.gallery");
 const lightbox = document.querySelector(".lightbox");
 const btn = document.querySelector('[data-action="close-lightbox"]');
 
+galleryList.addEventListener("click", onOpenModal);
+btn.addEventListener("click", onCloseModal);
+lightbox.addEventListener("click", onBackdropClick);
+
 const createImage = (el, parent) => {
   const { preview, original, description } = el;
   const img = document.createElement("img");
@@ -37,29 +41,37 @@ const createItem = (el) => {
   return li;
 };
 
-const listItems = (arr) => {
+const joinListItems = (arr) => {
   const items = arr.map((el) => createItem(el));
 
   galleryList.append(...items);
 };
 
-listItems(photos);
+joinListItems(photos);
 
-function onClickHandler(el) {
-  el.preventDefault();
+function onOpenModal(elem) {
+  elem.preventDefault();
 
-  if (el.target.nodeName === "IMG") {
-    lightbox.classList.add("is-open");
-    lightbox.querySelector(".lightbox__image").src = el.target.src;
-    lightbox.querySelector(".lightbox__image").alt = el.target.alt;
+  window.addEventListener("keydown", onEscKeyPress);
+
+  lightbox.classList.add("is-open");
+  lightbox.querySelector(".lightbox__image").src = elem.target.src;
+  lightbox.querySelector(".lightbox__image").alt = elem.target.alt;
+}
+
+function onCloseModal() {
+  window.removeEventListener("keydown", onEscKeyPress);
+  lightbox.classList.remove("is-open");
+}
+
+function onBackdropClick(event) {
+  if (event.target.nodeName === "DIV") {
+    onCloseModal();
   }
 }
 
-function onCloseHandler(el) {
-  if (el.target.nodeName === "BUTTON") {
-    lightbox.classList.remove("is-open");
+function onEscKeyPress(event) {
+  if (event.code === "Escape") {
+    onCloseModal();
   }
 }
-
-galleryList.addEventListener("click", onClickHandler);
-btn.addEventListener("click", onCloseHandler);
