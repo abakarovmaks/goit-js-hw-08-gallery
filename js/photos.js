@@ -4,13 +4,11 @@ const galleryList = document.querySelector("ul.gallery");
 const lightbox = document.querySelector(".lightbox");
 const btn = document.querySelector('[data-action="close-lightbox"]');
 const imageAttributes = document.querySelector(".lightbox__image");
+const lightboxOverlay = document.querySelector(".lightbox__overlay");
 
 galleryList.addEventListener("click", onOpenModal);
 btn.addEventListener("click", onCloseModal);
-document.body.addEventListener("click", onBackdropClick);
-
-// imageAttributes.src = elem.target.src;
-// imageAttributes.alt = elem.target.alt;
+lightboxOverlay.addEventListener("click", onCloseModal);
 
 const createImage = (el, parent) => {
   const { preview, original, description } = el;
@@ -70,12 +68,6 @@ function onCloseModal() {
   lightbox.classList.remove("is-open");
   imageAttributes.removeAttribute("src");
   imageAttributes.removeAttribute("alt");
-}
-
-function onBackdropClick(event) {
-  if (event.target.nodeName === "DIV") {
-    onCloseModal();
-  }
 }
 
 function onEscKeyPress(event) {
