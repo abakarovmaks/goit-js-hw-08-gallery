@@ -54,9 +54,11 @@ function onOpenModal(elem) {
 
   window.addEventListener("keydown", onEscKeyPress);
 
-  lightbox.classList.add("is-open");
-  lightbox.querySelector(".lightbox__image").src = elem.target.src;
-  lightbox.querySelector(".lightbox__image").alt = elem.target.alt;
+  if (elem.target.nodeName === "IMG") {
+    lightbox.classList.add("is-open");
+    lightbox.querySelector(".lightbox__image").src = elem.target.src;
+    lightbox.querySelector(".lightbox__image").alt = elem.target.alt;
+  }
 }
 
 function onCloseModal() {
