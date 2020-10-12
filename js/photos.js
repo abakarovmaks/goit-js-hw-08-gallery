@@ -3,6 +3,7 @@ import photos from "./data/gallary-items.js";
 const galleryList = document.querySelector("ul.gallery");
 const lightbox = document.querySelector(".lightbox");
 const btn = document.querySelector('[data-action="close-lightbox"]');
+const imageDeleteSrc = document.querySelector(".lightbox__image");
 
 galleryList.addEventListener("click", onOpenModal);
 btn.addEventListener("click", onCloseModal);
@@ -64,6 +65,8 @@ function onOpenModal(elem) {
 function onCloseModal() {
   window.removeEventListener("keydown", onEscKeyPress);
   lightbox.classList.remove("is-open");
+  imageDeleteSrc.removeAttribute("src");
+  imageDeleteSrc.removeAttribute("alt");
 }
 
 function onBackdropClick(event) {
