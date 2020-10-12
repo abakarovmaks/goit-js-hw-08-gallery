@@ -6,15 +6,15 @@ const btn = document.querySelector('[data-action="close-lightbox"]');
 
 galleryList.addEventListener("click", onOpenModal);
 btn.addEventListener("click", onCloseModal);
-lightbox.addEventListener("click", onBackdropClick);
+document.body.addEventListener("click", onBackdropClick);
 
 const createImage = (el, parent) => {
   const { preview, original, description } = el;
   const img = document.createElement("img");
 
   img.classList.add("gallery__image");
-  img.dataset.source = original;
-  img.src = preview;
+  img.dataset.source = preview;
+  img.src = original;
   img.alt = description;
 
   parent.appendChild(img);
@@ -24,7 +24,7 @@ const createLink = (el, parent) => {
   const { original } = el;
   const link = document.createElement("a");
 
-  link.classList.add("gallary__link");
+  link.classList.add("gallery__link");
   link.href = original;
 
   createImage(el, link);
@@ -34,7 +34,7 @@ const createLink = (el, parent) => {
 
 const createItem = (el) => {
   const li = document.createElement("li");
-  li.classList.add("gallary__item");
+  li.classList.add("gallery__item");
 
   createLink(el, li);
 
