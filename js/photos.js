@@ -3,11 +3,14 @@ import photos from "./data/gallary-items.js";
 const galleryList = document.querySelector("ul.gallery");
 const lightbox = document.querySelector(".lightbox");
 const btn = document.querySelector('[data-action="close-lightbox"]');
-const imageDeleteSrc = document.querySelector(".lightbox__image");
+const imageAttributes = document.querySelector(".lightbox__image");
 
 galleryList.addEventListener("click", onOpenModal);
 btn.addEventListener("click", onCloseModal);
 document.body.addEventListener("click", onBackdropClick);
+
+// imageAttributes.src = elem.target.src;
+// imageAttributes.alt = elem.target.alt;
 
 const createImage = (el, parent) => {
   const { preview, original, description } = el;
@@ -57,16 +60,16 @@ function onOpenModal(elem) {
 
   if (elem.target.nodeName === "IMG") {
     lightbox.classList.add("is-open");
-    lightbox.querySelector(".lightbox__image").src = elem.target.src;
-    lightbox.querySelector(".lightbox__image").alt = elem.target.alt;
+    imageAttributes.src = elem.target.src;
+    imageAttributes.alt = elem.target.alt;
   }
 }
 
 function onCloseModal() {
   window.removeEventListener("keydown", onEscKeyPress);
   lightbox.classList.remove("is-open");
-  imageDeleteSrc.removeAttribute("src");
-  imageDeleteSrc.removeAttribute("alt");
+  imageAttributes.removeAttribute("src");
+  imageAttributes.removeAttribute("alt");
 }
 
 function onBackdropClick(event) {
